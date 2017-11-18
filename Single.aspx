@@ -4,7 +4,7 @@
 
 						<!-- FlexSlider -->
 https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/jquery.flexslider.js
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.4.0/flexslider.css" type="text/css" media="screen" />
 
 <script>
     // Can also be used with $(document).ready()

@@ -20,7 +20,7 @@
     <div class="banner-bottom">
         <div class="gallery-cursual">
             <!--requried-jsfiles-for owl-->
-            <script src="js/owl.carousel.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
             <script>
                 $(document).ready(function () {
                     $("#owl-demo").owlCarousel({
