@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Default2 : System.Web.UI.Page
 {
@@ -30,15 +25,15 @@ public partial class Default2 : System.Web.UI.Page
         lblRegistrationSuccess.Text = lblWarning.Text = "";
         if (!isValidInputs())
             return;
-        Users user = Users.tryLogin(email, password);
-        if (user == null)
+
+        var authService = new AuthenticationService(email, password);
+        if (authService.IsLoginSuccess())
         {
-            lblWarning.Text = "Wrong Email/Password";
+            Response.Redirect("Default.aspx");
             return;
         }
-
-        Session["LoggedInuser"] = user.Id;
-        Response.Redirect("Default.aspx");
+        lblWarning.Text = "Wrong Email/Password";
+        return;
     }
 
     private bool isValidInputs()

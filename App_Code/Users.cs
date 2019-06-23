@@ -64,21 +64,6 @@ public class Users
 
     }
 
-    private string validateLogin()
-    {
-        string error = "";
-        if (Email == "")
-        {
-            error += "<br/>Enter Email";
-        }
-        if (Password == "")
-        {
-            error += "<br/>Enter Password.";
-        }
-
-        return error;
-    }
-
     public static bool isEmailAdded(string Email)
     {
         string sql = "SELECT count(id) as count FROM Users where email = '" + Email + "';";
@@ -91,50 +76,6 @@ public class Users
         }
         return true;
         
-    }
-
-    public static Users tryLogin(string Email, string Password)
-    {
-        string sql = "SELECT id from Users WHERE email = '" + Email + "' and password = '" + Password + "'";
-        DataRow row = Db.getOne(sql);
-        Users User = null;
-        if (row.ItemArray.Count() > 0)
-        {
-            User = new Users();
-            string _id;
-            _id = row[0].ToString();
-            int id;
-            int.TryParse(_id, out id);
-            User.Id = id;
-            User.Get();
-
-            string key = "user";
-            HttpContext.Current.Session[key] = id;
-            
-        }
-        return User;
-    }
-
-    public void LogOut()
-    {
-        string key = "user";
-        HttpContext.Current.Session.Remove(key);
-    }
-
-    public static Users GetLoggedInUser()
-    {
-        Users loggedInUser = new Users();
-        if (HelperClass.isCustomerLogin())
-        {
-
-            var _id = HttpContext.Current.Session["user"].ToString();
-            int id;
-            int.TryParse(_id, out id);
-
-            loggedInUser.Get();
-        }
-
-        return loggedInUser;
     }
 
     public List<Bids> ChanceToWin()
