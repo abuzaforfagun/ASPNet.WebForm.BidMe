@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
+    public bool isUserLoggedIn = false;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             DisplayNavigationMenu();
-            DisplayUserNavigation();
+            isUserLoggedIn = Session["LoggedInuser"] != null;
         }
     }
 
@@ -29,20 +26,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         listNavigation.InnerHtml = html;
     }
-
-    private void DisplayUserNavigation()
-    {
-        
-        if(Session["LoggedInuser"] != null)
-        {
-            listUserNavigation.InnerHtml = @"<li><a href = 'dashboard.aspx'>My Account</a></li>
-                                             <li><a href = 'logout.aspx'>Log Out</a></li>";
-        }
-        else
-        {
-            listUserNavigation.InnerHtml = "<li><a href = 'login.aspx'>Login</a></li>";
-        }
-    }
+    
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         string keywords = "";
